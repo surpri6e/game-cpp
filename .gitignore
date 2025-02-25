@@ -1,0 +1,7 @@
+x64/
+.vs/*
+game2d.sln
+game2d.vcxproj
+game2d.vcxproj.filters
+game2d.vcxproj.user
+*.dll
