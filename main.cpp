@@ -19,6 +19,8 @@ typedef unsigned int ui;
 
 int main( int argc, char* argv[] ) {
     sf::RenderWindow window( sf::VideoMode( { consts::WIDTH_WINDOW, consts::HEIGHT_WINDOW } ), "2D Game", sf::Style::Close );
+    window.setKeyRepeatEnabled( false );
+
     auto allTextures = std::make_shared<Texture>( Texture() );
 
     std::string fileToLocation = "start_location.tmx";
@@ -32,7 +34,7 @@ int main( int argc, char* argv[] ) {
 
     rerender( window, bottomLayerObjects, normalLayerObjects, topLayerObjects);
 
-    unsigned long long COUNTER_OF_STEPS = 0;
+    // unsigned long long COUNTER_OF_STEPS = 0;
 
     while (window.isOpen())
     {

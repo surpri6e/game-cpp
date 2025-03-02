@@ -13,8 +13,6 @@
 #include "ObjectGrass.hpp"
 #include "ObjectHero.hpp"
 
-
-#include <iostream>
 typedef unsigned int ui;
 
 class Map {
@@ -83,7 +81,6 @@ public:
 
                 if (this->normalLayerMap[i][k] == consts::STANDART_ROCK_SIGN) {
                     arrLine.push_back( std::make_shared<Object>( ObjectRock( consts::STANDART_ROCK_SIGN, positionX, positionY, texture.get()->getStandartRockTexture(), 10)));
-                    std::cout << arrLine[k].get()->getIsWalkable() << std::endl;
                 }
 
                 if (this->normalLayerMap[i][k] == consts::HERO_SIGN) {
