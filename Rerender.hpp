@@ -1,37 +1,36 @@
 #pragma once 
 
 #include <SFML/Graphics.hpp>
-#include <vector>
-#include <memory>
+#include <SFML/Audio.hpp>
 
-#include "Object.hpp"
+#include "General.hpp"
 
-void rerender( sf::RenderWindow& window, 
-    std::vector<std::vector<std::shared_ptr<Object>>>& bottomLayer,
-    std::vector<std::vector<std::shared_ptr<Object>>>& normalLayer,
-    std::vector<std::vector<std::shared_ptr<Object>>>& topLayer ) {
+void rerender( General& G ) {
+    G.getWindow().clear(sf::Color(27, 58, 10));
 
+    G.getWindow().setView( G.getCamera() );
 
-    for (auto i = 0; i < bottomLayer.size(); i++) {
-        for (auto k = 0; k < bottomLayer[i].size(); k++) {
-            bottomLayer[i][k].get()->toDraw(window);
-
+    for (auto i = 0; i < G.getBottomLayerObjects().size(); i++) {
+        for (auto k = 0; k < G.getBottomLayerObjects()[i].size(); k++) {
+            G.getBottomLayerObjects()[i][k].get()->toDraw( G.getWindow() );
         }
     }
 
 
-    for (auto i = 0; i < normalLayer.size(); i++) {
-        for (auto k = 0; k < normalLayer[i].size(); k++) {
-            normalLayer[i][k].get()->toDraw( window );
+    for (auto i = 0; i < G.getNormalLayerObjects().size(); i++) {
+        for (auto k = 0; k < G.getNormalLayerObjects()[i].size(); k++) {
+            G.getNormalLayerObjects()[i][k].get()->toDraw( G.getWindow() );
         }
     }
     
     
-    for (auto i = 0; i < topLayer.size(); i++) {
-        for (auto k = 0; k < topLayer[i].size(); k++) {
-            topLayer[i][k].get()->toDraw( window );
+    for (auto i = 0; i < G.getTopLayerObjects().size(); i++) {
+        for (auto k = 0; k < G.getTopLayerObjects()[i].size(); k++) {
+            G.getTopLayerObjects()[i][k].get()->toDraw( G.getWindow() );
         }
     }
-
-    window.display();
+    
+    G.getWindow().display();
 }
+
+

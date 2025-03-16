@@ -14,7 +14,7 @@ private:
     ui HP;
     // Направление взгляда
 public:
-    ObjectHero( std::string signOnMap, float x, float y, ui HP, sf::Texture& texture )
+    ObjectHero( std::string signOnMap, float x, float y, ui HP, const sf::Texture& texture )
         : Object( false, false, signOnMap, x, y, false ) {
 
         coordsOnMapX = x / consts::WIDTH_TILE;

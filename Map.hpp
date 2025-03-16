@@ -7,11 +7,12 @@
 #include "Parcer.hpp"
 #include "Object.hpp"
 #include "Constants.hpp"
-#include "Texture.hpp"
+#include "Textures.hpp"
 
 #include "ObjectRock.hpp"
 #include "ObjectGrass.hpp"
 #include "ObjectHero.hpp"
+#include "ObjectTree.hpp"
 
 typedef unsigned int ui;
 
@@ -37,7 +38,7 @@ public:
     }
     
     
-    std::vector<std::vector<std::shared_ptr<Object>>> getMapOfObjectsTopLayer( std::shared_ptr<Texture>& texture ) {
+    std::vector<std::vector<std::shared_ptr<Object>>> getMapOfObjectsTopLayer( const std::shared_ptr<const Textures>& allTextures ) {
         std::vector<std::vector<std::shared_ptr<Object>>> result = {};
 
         float positionX = 0;
@@ -52,6 +53,11 @@ public:
                     arrLine.push_back( std::make_shared<Object>( Object( true, true, consts::AIR_SIGN, positionX, positionY, true ) ) );
                 }
 
+                // Top layer - can i break it? How it need working
+                if (this->topLayerMap[i][k] == consts::SMALL_DARK_TREE_TOP_SIGN) {
+                    arrLine.push_back( std::make_shared<Object>( ObjectTree( consts::SMALL_DARK_TREE_TOP_SIGN, positionX, positionY, allTextures.get()->getSmallDarkTreeTopTexture(), 5 ) ) );
+                }
+
                 positionX += consts::WIDTH_TILE;
             }
 
@@ -64,7 +70,7 @@ public:
     
   
 
-    std::vector<std::vector<std::shared_ptr<Object>>> getMapOfObjectsNormalLayer( std::shared_ptr<Texture>& texture ) {
+    std::vector<std::vector<std::shared_ptr<Object>>> getMapOfObjectsNormalLayer( const std::shared_ptr<const Textures>& allTextures ) {
         std::vector<std::vector<std::shared_ptr<Object>>> result = {};
 
         float positionX = 0;
@@ -79,12 +85,17 @@ public:
                     arrLine.push_back( std::make_shared<Object>( Object( true, true, consts::AIR_SIGN, positionX, positionY, true ) ) );
                 }
 
+                // Top layer - can i break it? How it need working
                 if (this->normalLayerMap[i][k] == consts::STANDART_ROCK_SIGN) {
-                    arrLine.push_back( std::make_shared<Object>( ObjectRock( consts::STANDART_ROCK_SIGN, positionX, positionY, texture.get()->getStandartRockTexture(), 10)));
+                    arrLine.push_back( std::make_shared<Object>( ObjectRock( consts::STANDART_ROCK_SIGN, positionX, positionY, allTextures.get()->getStandartRockTexture(), 10)));
                 }
 
                 if (this->normalLayerMap[i][k] == consts::HERO_SIGN) {
-                    arrLine.push_back( std::make_shared<Object>( ObjectHero( consts::HERO_SIGN, positionX, positionY, 100, texture.get()->getFemaleHeroTexture() ) ) );
+                    arrLine.push_back( std::make_shared<Object>( ObjectHero( consts::HERO_SIGN, positionX, positionY, 100, allTextures.get()->getFemaleHeroTexture() ) ) );
+                }
+
+                if (this->normalLayerMap[i][k] == consts::SMALL_DARK_TREE_BOTTOM_SIGN) {
+                    arrLine.push_back( std::make_shared<Object>( ObjectTree( consts::SMALL_DARK_TREE_BOTTOM_SIGN, positionX, positionY, allTextures.get()->getSmallDarkTreeBottomTexture(), 5 ) ) );
                 }
 
                 positionX += consts::WIDTH_TILE;
@@ -98,7 +109,7 @@ public:
     }
     
 
-    std::vector<std::vector<std::shared_ptr<Object>>> getMapOfObjectsBottomLayer( std::shared_ptr<Texture>& texture, sf::RenderWindow& win ) {
+    std::vector<std::vector<std::shared_ptr<Object>>> getMapOfObjectsBottomLayer( const std::shared_ptr<const Textures>& allTextures ) {
         std::vector<std::vector<std::shared_ptr<Object>>> result = {};
 
         float positionX = 0;
@@ -109,11 +120,8 @@ public:
             positionX = 0;
 
             for (auto k = 0; k < this->bottomLayer.getWidth(); k++) {
-                if (this->bottomLayerMap[i][k] == consts::AIR_SIGN) {
-                    arrLine.push_back( std::make_shared<Object>( Object( true, true, consts::AIR_SIGN, positionX, positionY, true ) ) );
-                }
                 if (this->bottomLayerMap[i][k] == consts::LIGHTEN_GRASS_SIGN) {
-                    arrLine.push_back( std::make_shared<Object>( ObjectGrass( consts::LIGHTEN_GRASS_SIGN, positionX, positionY, texture.get()->getLightenGrassTexture()  ) ) );
+                    arrLine.push_back( std::make_shared<Object>( ObjectGrass( consts::LIGHTEN_GRASS_SIGN, positionX, positionY, allTextures.get()->getLightenGrassTexture()  ) ) );
                 }
 
                 positionX += consts::WIDTH_TILE;

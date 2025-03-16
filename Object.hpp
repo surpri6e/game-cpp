@@ -31,15 +31,15 @@ public:
 		this->shape.setPosition( sf::Vector2f( x, y ) );
 	}
 
-	void toDraw(sf::RenderWindow& window) const {
+	void toDraw(sf::RenderWindow& window) {
 		window.draw(this->shape);
 	}
 
-	const std::string& getSignOnMap() const {
+	const std::string& getSignOnMap() {
 		return this->signOnMap;
 	}
 
-	bool getIsWalkable() const {
+	bool getIsWalkable() {
 		return this->isWalkable;
 	}
 };

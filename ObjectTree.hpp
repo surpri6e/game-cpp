@@ -6,12 +6,12 @@
 
 typedef unsigned int ui;
 
-class ObjectRock : public Object {
+class ObjectTree : public Object {
 private:
 	ui stepForBroke;
 public:
-	ObjectRock( std::string signOnMap, float x, float y, const sf::Texture& texture, ui stepForBroke)
-		: Object( true, false, signOnMap, x, y, false ) { 
+	ObjectTree( std::string signOnMap, float x, float y, const sf::Texture& texture, ui stepForBroke )
+		: Object( true, false, signOnMap, x, y, false ) {
 		this->stepForBroke = stepForBroke;
 		this->shape.setTexture( &texture );
 	}

@@ -7,15 +7,15 @@
 #include "Object.hpp"
 #include "ObjectHero.hpp"
 #include "Constants.hpp"
+#include "Menu.hpp"
+#include "Utils.hpp"
 
-#include <iostream>
-// bool isCLicked = false;
+void keyboardObserver(General& G) {
+    auto& normalLayer = G.getNormalLayerObjects();
 
-void keyboardObserver( 
-    sf::RenderWindow& window,
-    std::vector<std::vector<std::shared_ptr<Object>>>& bottomLayer,
-    std::vector<std::vector<std::shared_ptr<Object>>>& normalLayer,
-    std::vector<std::vector<std::shared_ptr<Object>>>& topLayer) {
+    if (sf::Keyboard::isKeyPressed( sf::Keyboard::Key::Escape )) {
+        G.setIsMenuActive( true );
+    }
 
     if (sf::Keyboard::isKeyPressed( sf::Keyboard::Key::Left )) {
         if ((int)ObjectHero::getXCoord() - 1 >= 0 && normalLayer[ObjectHero::getYCoord()][ObjectHero::getXCoord() - 1].get()->getIsWalkable()) {
@@ -26,8 +26,11 @@ void keyboardObserver(
 
             ObjectHero::setXCoord( ObjectHero::getXCoord() - 1 );
 
+            Utils::setNewCoords( G.getCamera());
 
-            rerender( window, bottomLayer, normalLayer, topLayer );
+            G.getClock().restart();
+
+            rerender( G);
         }
     }
 
@@ -40,13 +43,12 @@ void keyboardObserver(
 
             ObjectHero::setXCoord( ObjectHero::getXCoord() + 1 );
 
+            Utils::setNewCoords( G.getCamera() );
 
-            rerender( window, bottomLayer, normalLayer, topLayer );
+            G.getClock().restart();
+
+            rerender( G );
         }
-
-
-
-
     }
 
     if (sf::Keyboard::isKeyPressed( sf::Keyboard::Key::Up )) {
@@ -58,14 +60,14 @@ void keyboardObserver(
 
             ObjectHero::setYCoord( ObjectHero::getYCoord() - 1 );
 
+            Utils::setNewCoords( G.getCamera() );
 
-            rerender( window, bottomLayer, normalLayer, topLayer );
+            G.getClock().restart();
+
+            rerender( G );
         }
-
-
-
-
     }
+
     if (sf::Keyboard::isKeyPressed( sf::Keyboard::Key::Down )) {
         if ((int)ObjectHero::getYCoord() + 1 < normalLayer.size() && normalLayer[ObjectHero::getYCoord() + 1][ObjectHero::getXCoord()].get()->getIsWalkable()) {
             normalLayer[ObjectHero::getYCoord()][ObjectHero::getXCoord()].get()->setNewPosition( ObjectHero::getXCoord() * consts::WIDTH_TILE, (ObjectHero::getYCoord() + 1) * consts::HEIGHT_TILE );
@@ -75,8 +77,11 @@ void keyboardObserver(
 
             ObjectHero::setYCoord( ObjectHero::getYCoord() + 1 );
 
+            Utils::setNewCoords( G.getCamera() );
 
-            rerender( window, bottomLayer, normalLayer, topLayer );
+            G.getClock().restart();
+
+            rerender( G );
         }
     }
 }
