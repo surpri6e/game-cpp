@@ -27,6 +27,10 @@ public:
 		this->shape = newShape;
 	}
 
+	void setNewTextureRect( sf::IntRect rect ) {
+		this->shape.setTextureRect( rect );
+	}
+
 	void setNewPosition( float x, float y ) {
 		this->shape.setPosition( sf::Vector2f( x, y ) );
 	}

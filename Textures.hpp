@@ -12,13 +12,13 @@ private:
 
 	// Heros
 	sf::Texture femaleHeroTexture;
+	sf::Texture maleHeroTexture;
 
 	// Rocks
 	sf::Texture standartRockTexture;
 
 	// Trees 
-	sf::Texture smallDarkTreeTopTexture;
-	sf::Texture smallDarkTreeBottomTexture;
+	sf::Texture smallDarkTreeTexture;
 
 	// Menu
 	sf::Texture menuExitTexture;
@@ -35,16 +35,16 @@ public:
 			std::cout << consts::FEMALE_HERO_PATH_TO_TEXTURE << " is incorrect path!" << std::endl;
 		}
 
+		if (!this->maleHeroTexture.loadFromFile( consts::MALE_HERO_PATH_TO_TEXTURE )) {
+			std::cout << consts::MALE_HERO_PATH_TO_TEXTURE << " is incorrect path!" << std::endl;
+		}
+
 		if (!this->standartRockTexture.loadFromFile( consts::STANDART_ROCK_PATH_TO_TEXTURE )) {
 			std::cout << consts::STANDART_ROCK_PATH_TO_TEXTURE << " is incorrect path!" << std::endl;
 		}
 
-		if (!this->smallDarkTreeTopTexture.loadFromFile( consts::SMALL_DARK_TREE_TOP_PATH_TO_TEXTURE )) {
-			std::cout << consts::SMALL_DARK_TREE_TOP_PATH_TO_TEXTURE << " is incorrect path!" << std::endl;
-		}
-
-		if (!this->smallDarkTreeBottomTexture.loadFromFile( consts::SMALL_DARK_TREE_BOTTOM_PATH_TO_TEXTURE )) {
-			std::cout << consts::SMALL_DARK_TREE_BOTTOM_PATH_TO_TEXTURE << " is incorrect path!" << std::endl;
+		if (!this->smallDarkTreeTexture.loadFromFile( consts::SMALL_DARK_TREE_PATH_TO_TEXTURE )) {
+			std::cout << consts::SMALL_DARK_TREE_PATH_TO_TEXTURE << " is incorrect path!" << std::endl;
 		}
 
 		if (!this->menuExitTexture.loadFromFile( consts::MENU_EXIT_PATH_TO_TEXTURE )) {
@@ -74,18 +74,18 @@ public:
 		return this->femaleHeroTexture;
 	}
 
+	const sf::Texture& getMaleHeroTexture() const {
+		return this->maleHeroTexture;
+	}
+
 	// Rocks
 	const sf::Texture& getStandartRockTexture() const {
 		return this->standartRockTexture;
 	}
 
 	// Trees
-	const sf::Texture& getSmallDarkTreeTopTexture() const {
-		return this->smallDarkTreeTopTexture;
-	}
-
-	const sf::Texture& getSmallDarkTreeBottomTexture() const {
-		return this->smallDarkTreeBottomTexture;
+	const sf::Texture& getSmallDarkTreeTexture() const {
+		return this->smallDarkTreeTexture;
 	}
 
 	// Menu

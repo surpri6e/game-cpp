@@ -85,6 +85,10 @@ public:
                 rerender( G );
                 return;
             }
+
+            if (numOfMenu == 3) {
+                G.getWindow().close();
+            }
         }
 
         G.getWindow().draw( this->backgroundShape );

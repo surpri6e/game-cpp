@@ -8,8 +8,15 @@ namespace consts {
 	const ui HEIGHT_TILE = 128;
 	const ui WIDTH_TILE = 128;
 
+	const ui STANDART_HEIGHT_TILE = 32;
+	const ui STANDART_WIDTH_TILE = 32;
+
 	const ui HEIGHT_WINDOW = 1080;
 	const ui WIDTH_WINDOW = 1920;
+
+	const ui STEP_DELAY = 680;
+	const ui ANIMATION_DURATION = STEP_DELAY - 30;
+	const ui FRAMES_COUNTER = 4;
 
 	const std::string AIR_SIGN = "0";
 
@@ -25,9 +32,9 @@ namespace consts {
 	const std::string STANDART_ROCK_PATH_TO_TEXTURE = "images/rocks/standart_rock.png";
 	const std::string LIGHTEN_GRASS_PATH_TO_TEXTURE = "images/grass/lighten_grass.png";
 	const std::string FEMALE_HERO_PATH_TO_TEXTURE = "images/heros/female_hero.png";
+	const std::string MALE_HERO_PATH_TO_TEXTURE = "images/heros/male_hero.png";
 
-	const std::string SMALL_DARK_TREE_TOP_PATH_TO_TEXTURE = "images/trees/small_tree_dark/top_tree.png";
-	const std::string SMALL_DARK_TREE_BOTTOM_PATH_TO_TEXTURE = "images/trees/small_tree_dark/bottom_tree.png";
+	const std::string SMALL_DARK_TREE_PATH_TO_TEXTURE = "images/trees/small_tree_dark.png";
 
 	const std::string WALK_ON_GRASS_PATH_TO_SOUND = "audios/walkOnGrass.wav";
 

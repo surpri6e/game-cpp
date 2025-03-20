@@ -55,7 +55,18 @@ public:
 
                 // Top layer - can i break it? How it need working
                 if (this->topLayerMap[i][k] == consts::SMALL_DARK_TREE_TOP_SIGN) {
-                    arrLine.push_back( std::make_shared<Object>( ObjectTree( consts::SMALL_DARK_TREE_TOP_SIGN, positionX, positionY, allTextures.get()->getSmallDarkTreeTopTexture(), 5 ) ) );
+                    arrLine.push_back( 
+                        std::make_shared<Object>( 
+                            ObjectTree( 
+                                consts::SMALL_DARK_TREE_TOP_SIGN, 
+                                positionX, 
+                                positionY, 
+                                allTextures.get()->getSmallDarkTreeTexture(), 
+                                sf::IntRect(sf::Vector2i(0, 0), sf::Vector2i(consts::STANDART_WIDTH_TILE, consts::STANDART_HEIGHT_TILE)), 
+                                5 
+                            ) 
+                        ) 
+                    );
                 }
 
                 positionX += consts::WIDTH_TILE;
@@ -91,11 +102,24 @@ public:
                 }
 
                 if (this->normalLayerMap[i][k] == consts::HERO_SIGN) {
-                    arrLine.push_back( std::make_shared<Object>( ObjectHero( consts::HERO_SIGN, positionX, positionY, 100, allTextures.get()->getFemaleHeroTexture() ) ) );
+                    arrLine.push_back( std::make_shared<Object>( 
+                        ObjectHero( consts::HERO_SIGN, positionX, positionY, 100, allTextures.get()->getMaleHeroTexture() ) 
+                    ));
                 }
 
                 if (this->normalLayerMap[i][k] == consts::SMALL_DARK_TREE_BOTTOM_SIGN) {
-                    arrLine.push_back( std::make_shared<Object>( ObjectTree( consts::SMALL_DARK_TREE_BOTTOM_SIGN, positionX, positionY, allTextures.get()->getSmallDarkTreeBottomTexture(), 5 ) ) );
+                    arrLine.push_back( 
+                        std::make_shared<Object>( 
+                            ObjectTree( 
+                                consts::SMALL_DARK_TREE_BOTTOM_SIGN, 
+                                positionX, 
+                                positionY, 
+                                allTextures.get()->getSmallDarkTreeTexture(),
+                                sf::IntRect(sf::Vector2i(0, 32), sf::Vector2i(consts::STANDART_WIDTH_TILE, consts::STANDART_HEIGHT_TILE)),
+                                5 
+                            ) 
+                        ) 
+                    );
                 }
 
                 positionX += consts::WIDTH_TILE;
